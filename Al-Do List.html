@@ -1,0 +1,154 @@
+
+<!-- saved from url=(0047)file:///C:/Users/COMP-35/Desktop/tik/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"></head><body>
+
+<div>
+    <h1>Welcome to the Al-Do list website!</h1>
+    <p>Benefits?</p>
+    <ul>
+      <li>helps you organize your to-do list</li>
+      <li>optimize time</li>
+      <li>effective task management</li>
+    </ul>
+  </div>
+  
+
+
+    <title>Al-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin: 0 auto;
+            width: 50%;
+        }
+        h1 {
+            text-align: center;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li:not(:last-child) {
+            margin-bottom: 10px;
+        }
+        label {
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        input[type="text"] {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            padding: 5px 15px;
+            border-radius: 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #3E8E41;
+        }
+    </style>
+
+
+
+        
+    
+    <script>
+        function addTask() {
+            // Get the input field and value
+            var taskInput = document.getElementById("task");
+            var taskValue = taskInput.value;
+
+            // Create a new list item and check box
+            var li = document.createElement("li");
+            var checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            li.appendChild(checkbox);
+
+            // Add the task text to the list item
+            var textNode = document.createTextNode(taskValue);
+            li.appendChild(textNode);
+
+            // Add the list item to the task list
+            var ul = document.getElementById("task-list");
+            ul.appendChild(li);
+
+            // Clear the input field
+            taskInput.value = "";
+        }
+    </script>
+
+
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To Do List</title>
+<style>
+    /* Tambahkan gaya CSS di sini */
+</style>
+
+
+<h1>Al-Do List</h1>
+<form id="todo-form">
+    <input type="text" id="todo-input" placeholder="add new task...">
+    <input type="datetime-local" id="deadline" name="deadline">
+    <button type="submit">Tambah</button>
+</form>
+<ul id="todo-list">
+    <!-- Daftar tugas akan ditampilkan di sini -->
+</ul>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const todoForm = document.getElementById("todo-form");
+        const todoInput = document.getElementById("todo-input");
+        const todoList = document.getElementById("todo-list");
+
+        todoForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            const task = todoInput.value;
+            const deadline = document.getElementById("deadline").value;
+
+            if (task.trim() !== '') {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `
+                    <span>${task}</span>
+                    <span>${deadline}</span>
+                    <button class="edit-btn">Edit</button>
+                    <button class="delete-btn">Hapus</button>
+                `;
+                todoList.appendChild(listItem);
+                todoInput.value = '';
+            }
+        });
+
+        todoList.addEventListener("click", function(event) {
+            const target = event.target;
+            if (target.classList.contains("delete-btn")) {
+                target.parentElement.remove();
+            } else if (target.classList.contains("edit-btn")) {
+                const newTask = prompt("Masukkan tugas baru:");
+                const newDeadline = prompt("Masukkan tenggat waktu baru:");
+                if (newTask !== null && newTask.trim() !== '') {
+                    target.parentElement.querySelector("span").textContent = newTask;
+                }
+                if (newDeadline !== null && newDeadline.trim() !== '') {
+                    target.parentElement.querySelectorAll("span")[1].textContent = newDeadline;
+                }
+            }
+        });
+    });
+</script>
+
+
+</body></html>
